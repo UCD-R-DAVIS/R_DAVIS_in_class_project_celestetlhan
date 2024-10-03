@@ -2,19 +2,25 @@
 
 3+4
 
+#order of operations
 4 + 8 * 3^2
 
 #this is a comment
 
+#scientific notation
 2/1000000
 4e3
 
+#mathematical functions
 exp(1) #E^1
 
 exp(3)
 
+sqrt(4)
+
 log(100) #assumes the base of exp(1)
 log(100, base=10)
+log(x=100, base=10)
 y <- 1
 log(y)
 
@@ -22,6 +28,11 @@ log(10, 100) #base is assumed to be the second number..
 #unless you specify like in the next line
 log(base=10, x=100) #although we are saying that x=100, because..
 #its in a function it doesnt rewrite the x originally being set as 1 a few lines back
+
+
+#r help files uses the ? before a function
+?log
+
 
 x
 y
@@ -36,11 +47,13 @@ log("word") #words are written in quotes in R
 log(-40)
 #Warning message: In log(-40) : NaNs produced
 
+
+#assigning variables
 x <- 1
 x <- 3
-
 x = 2 #you could do this but could look confusing for difference statement
 
+#six comparison functions
 x == 5 # is x 5?
 x!= 5 # is x not 5?
 x > 4 #is x greater than 4?
@@ -48,17 +61,22 @@ x < 3 # is x less than 3
 x >= 2 # is x greater than or equal to 2?
 x <= -1 # is x less than or equal to -1?
 
+#nested functions
+sqrt(exp(4))
+
 x <- x + 1
 x
 y <- x +2
 
 x + y
 
-#OBJECT NAMING
+#OBJECT NAMING CONVENTION
 numSamples <- 50 #r is case sensitive
 num_samples <- 50
 
 rm(numSamples)
+
+rm(list=ls()) #removes a bunch of stuff in environment? idk confused
 
 #TAB COMPLETION
 #if i just write the number n and hit tab then all the diff
@@ -91,6 +109,9 @@ getwd()
 #returns a file path
 #returned "/Users/celestehan/Documents/R-Projects/R_DAVIS_in_class_project_celestetlhan"
 # ^this is an absolute file path, there r also relative file paths
+?setwd() #for when you wnt to set a file path
+#setwd(/Users/celestehan/Documents/R-Projects/R_DAVIS_in_class_project_celestetlhan/INSERT FILE NAME HERE")
+d<- read.csv("./data/tail_length.csv")
 
 #relative file paths
 #offer a shortcut for calling up file paths on computer
@@ -111,7 +132,8 @@ getwd()
 ##and also a folder for data outputs
 ##and also a folder for figure outputs/plots
 
-
+#creates a file called lecture in files window
+dir.create("./lecture")
 
 
 
@@ -121,6 +143,8 @@ getwd()
 
 weight <- c(50, 73, 47, 2)
 weight
+##vector is a series of values
+?c
 
 # vector with test
 animals <- c("mouse", "horse", "rat")
@@ -143,6 +167,22 @@ weight <- c(3, weight) #adds to the start of the vector
 weight
 
 
+#challenge
+#https://ucd-r-davis.github.io/R-DAVIS/lesson_03_how_r_thinks_about_data.html
+num_char <- c(1, 2, 3, "a")
+num_logical <- c(1, 2, 3, TRUE)
+char_logical <- c("a", "b", "c", TRUE)
+tricky <- c(1, 2, 3, "4")
+
+num_logical <- c(1, 2, 3, TRUE)
+char_logical <- c("a", "b", "c", TRUE)
+combined_logical <- c(num_logical, char_logical)
+combined_logical
+#as you can see a vector has to have all number or all characters
+#therefore vectors have to be the SAME class of values
+#chooses lowest common denominator
+#coerces values to be all the same, e.g. when TRUE is included
+
 
 ###WEEK 2.4 HOW R THINKS ABOUT DATA (SUBSETTING)
 #will learn how to extract specific values out of vectors we created
@@ -160,6 +200,7 @@ animals[c(2,3)] #extracts value 2 and 3
 
 animals[c(2,3,2,3,2,3)]
 
+#conditonal subsetting
 #there may be cases where you want to do conditionnal subsetting
 #logical vector subsetting
 
@@ -168,6 +209,24 @@ weight [c(TRUE, TRUE, FALSE, FALSE, FALSE)]
 weight[weight >50] # this shows you what the numbers are though
 #if interested to see which case is over 50 but not the actually number..
 weight > 50 # output: "[1] FALSE  TRUE  TRUE FALSE FALSE"
+
+#indexing: takes items from a vector and creates a new combination of values
+
+
+#symbols
+#%in% means within
+animals #outputs [1] "mouse" "rat"   "dog"   "cat"  
+animals %in% c("rat", "cat", "dog", "duck", "goat")
+#outputs [1] FALSE  TRUE  TRUE  TRUE
+
+animals == c("rat", "cat", "dog", "duck", "goat")
+#outputs Warning message:
+#In animals == c("rat", "cat", "dog", "duck", "goat") :
+  #longer object length is not a multiple of shorter object length
+#this causes recycling means, means the shorter one is being recycled to match the long one
+#the equals equals also matches the first one to the first one
+#but the %in% isnt PAIRING its like is this word in the group of words listed?
+#but == is MATCHED pairwise
 
 #multiple tests
 weight [weight > 50 | weight <20] #| means or
