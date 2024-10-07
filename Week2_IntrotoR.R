@@ -134,7 +134,7 @@ d<- read.csv("./data/tail_length.csv")
 
 #creates a file called lecture in files window
 dir.create("./lecture")
-
+dir.create("./scripts")
 
 
 ###WEEK 2.2 HOW R THINKS ABOUT DATA (VECTORS)
