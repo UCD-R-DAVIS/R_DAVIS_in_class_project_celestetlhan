@@ -223,6 +223,7 @@ animals == c("rat", "cat", "dog", "duck", "goat")
 #outputs Warning message:
 #In animals == c("rat", "cat", "dog", "duck", "goat") :
   #longer object length is not a multiple of shorter object length
+
 #this causes recycling means, means the shorter one is being recycled to match the long one
 #the equals equals also matches the first one to the first one
 #but the %in% isnt PAIRING its like is this word in the group of words listed?
