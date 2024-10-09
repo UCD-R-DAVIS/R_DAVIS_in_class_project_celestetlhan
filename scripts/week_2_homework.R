@@ -8,8 +8,17 @@ hw2
 prob1<- na.omit(hw2) #remove all the nans in vector which leaves 46 numbers 
 prob1
 
-prob1<- prob1[c(14:38)] #only take the numbers between 14-38 inclusive
-prob1
+
+###prob1<- prob1[c(14:38)] #only take the numbers between 14-38 inclusive
+###prob1
+#going back and archiving these because i misunderstood the question
+#i have to take the numbers that are between 14-38 not taking the 
+#14th number to the 38th number
+
+#reattempt:
+
+prob1<- prob1[prob1>=14 & prob1<=38]
+
 
 times3<- prob1*3
 times3
@@ -17,4 +26,8 @@ times3
 plus10<- times3+10
 plus10
 
-plus10[c(1,3,5,7,9,11,13,15,17,19,21,23)]
+## plus10<- plus10[c(1,3,5,7,9,11,13,15,17,19,21,23)]
+##archiving this because theres an easier way which is shown below
+
+plus10 <- plus10[c(TRUE,FALSE)]
+plus10
