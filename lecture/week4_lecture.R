@@ -272,7 +272,7 @@ surveys %>%
 #arranged (arrange()) in descending order, from heaviest to lightest. (This table should have 
 #26 rows, one for each year)
 
-
+#my attempt
 surveys %>%
   mutate(.,
          weight_g = weight_kg*1000) %>%
@@ -281,6 +281,24 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE)) %>%
   arrange(-mean_weight) #descending
 
+#
+d<- surveys %>%
+  select(year, record_id, weight) %>%
+  filter(!is.na(weight)) %>%
+  mutate(weight_kg = weight/1000) %>%
+  group_by(year) %>%
+  summarize(max_weight_g = max(weight)
+            max_weight_kg = max(weight)) %>%
+  arrange()
+  
+  nrow(d)
+
+  ?dplyr
+  #gives
+  #Useful links:
+  # https://dplyr.tidyverse.org
+  # https://github.com/tidyverse/dplyr
+  #Report bugs at https://github.com/tidyverse/dplyr/issues
 
 #Try out a new function, count(). Group the data by sex and pipe the grouped data into the 
 #count() function. How could you get the same result using group_by() and summarize()? 
